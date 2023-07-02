@@ -1,0 +1,19 @@
+{
+    "name": "Tiles.Utils",
+    "rootNamespace": "Utils.Tiles",
+    "references": [
+        "GUID:2c4a2557aabf5a1489215e485f3688b9",
+        "GUID:776d03a35f1b52c4a9aed9f56d7b4229"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
