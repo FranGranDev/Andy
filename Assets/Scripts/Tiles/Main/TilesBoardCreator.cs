@@ -114,6 +114,7 @@ namespace Game.Tiles
 
             string filePath = $"{folderPath}/{fileName}.asset";
 
+            AssetDatabase.DeleteAsset(filePath);
             AssetDatabase.CreateAsset(data, filePath);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
@@ -175,7 +176,8 @@ namespace Game.Tiles
 
         private Tile Create(TileTypes type)
         {
-            Tile tile = Instantiate(tilesData.Prefab, container).GetComponent<Tile>();
+            GameObject prefab = PrefabUtility.InstantiatePrefab(tilesData.Prefab, container) as GameObject;
+            Tile tile = prefab.GetComponent<Tile>();
 
             tile.Initialize(type, tilesData.GetViewData(type));
 

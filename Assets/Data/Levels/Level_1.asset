@@ -58,16 +58,6 @@ MonoBehaviour:
     <TileType>k__BackingField: 3
     <Layer>k__BackingField: 2
     <Hidden>k__BackingField: 0
-  - <Position>k__BackingField: {x: -2, y: -3}
-    <LocalPosition>k__BackingField: {x: -2, y: -3}
-    <TileType>k__BackingField: 3
-    <Layer>k__BackingField: 1
-    <Hidden>k__BackingField: 1
-  - <Position>k__BackingField: {x: -3, y: -4.5}
-    <LocalPosition>k__BackingField: {x: -3, y: -4.5}
-    <TileType>k__BackingField: 3
-    <Layer>k__BackingField: 2
-    <Hidden>k__BackingField: 0
   - <Position>k__BackingField: {x: -2, y: 3}
     <LocalPosition>k__BackingField: {x: -2, y: 3}
     <TileType>k__BackingField: 3

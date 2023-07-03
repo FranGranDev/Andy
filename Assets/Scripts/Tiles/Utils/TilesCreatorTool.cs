@@ -85,7 +85,6 @@ namespace Utils.Tiles
                         Delete(point);
                         break;
                 }
-
             }
 
             RestoreSelection();
@@ -203,7 +202,6 @@ namespace Utils.Tiles
             if(tilesHolder)
             {
                 Selection.activeGameObject = tilesHolder.gameObject;
-                EditorGUIUtility.PingObject(tilesHolder);
             }
         }
 
