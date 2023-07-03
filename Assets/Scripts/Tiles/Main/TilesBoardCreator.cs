@@ -44,6 +44,10 @@ namespace Game.Tiles
             if (tiles.ContainsKey(position))
             {
                 Stack<Tile> tileStack = tiles[position];
+                if(tileStack.Count > 0)
+                {
+                    tileStack.Peek().Hidden = true;
+                }
 
                 if(neighbours.Count == 0)
                 {

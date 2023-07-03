@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 9221322448481438734}
   - component: {fileID: 5320800988206602640}
   - component: {fileID: 5680393566902713770}
-  - component: {fileID: 7428051459451082688}
   m_Layer: 6
   m_Name: Tile
   m_TagString: Untagged
@@ -171,7 +170,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2394fc496efc7fe439242b662f1ac458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  position: {x: 0, y: 0}
   tileType: 0
+  layer: 0
+  hidden: 0
+  collider: {fileID: 6580060985591433894}
 --- !u!114 &5680393566902713770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,19 +189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMultiplier: 3
   iconRenderer: {fileID: 9221322448932026150}
---- !u!114 &7428051459451082688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9221322448481438735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c605c0e0369e37b498255d69a1e0c87e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collider: {fileID: 6580060985591433894}
 --- !u!1 &9221322448932026144
 GameObject:
   m_ObjectHideFlags: 0

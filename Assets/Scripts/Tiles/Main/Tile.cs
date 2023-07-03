@@ -6,7 +6,7 @@ using System;
 
 namespace Game.Tiles
 {
-    [RequireComponent(typeof(ITileView), typeof(ITileContact))]
+    [RequireComponent(typeof(ITileView))]
     public class Tile : MonoBehaviour
     {
         [Header("States")]
@@ -14,10 +14,11 @@ namespace Game.Tiles
         [SerializeField] private TileTypes tileType;
         [SerializeField] private int layer;
         [SerializeField] private bool hidden;
+        [SerializeField] private bool disabled;
+        [Header("Components")]
+        [SerializeField] private new Collider2D collider;
 
         private ITileView tileView;
-        private ITileContact tileContact;
-
 
 
         public Vector2 Position
@@ -46,13 +47,18 @@ namespace Game.Tiles
             {
                 hidden = value;
                 tileView.Hidden = value;
+                collider.enabled = !value && !disabled;
             }
         }
-
-
-        public event Action OnSelect;
-        public event Action OnUnselect;
-        public event Action OnTap;
+        public bool Disabled
+        {
+            get => disabled;
+            set
+            {
+                disabled = value;
+                collider.enabled = !value && !hidden;
+            }
+        }
 
 
         public void Initialize(TileTypes tileType, TilesData.ViewData viewData)
@@ -60,13 +66,8 @@ namespace Game.Tiles
             TileType = tileType;
 
             tileView = GetComponent<ITileView>();
-            tileContact = GetComponent<ITileContact>();
 
             tileView.Setup(viewData.Sprite, viewData.Color);
-
-            tileContact.OnSelect += Select;
-            tileContact.OnUnselect += Unselect;
-            tileContact.OnTap += Tap;
         }
         public void Apply(Data data)
         {
@@ -78,20 +79,6 @@ namespace Game.Tiles
             transform.localPosition = data.LocalPosition;
         }
 
-
-
-        private void Tap()
-        {
-            
-        }
-        private void Unselect()
-        {
-            
-        }
-        private void Select()
-        {
-            
-        }
 
 
         public Data GetData()

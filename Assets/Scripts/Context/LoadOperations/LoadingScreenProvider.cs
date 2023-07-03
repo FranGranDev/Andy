@@ -17,7 +17,7 @@ namespace Game.Context
         private readonly string screenId;
 
 
-        public async UniTask LoadAndDestroy(Queue<ILoadingOperation> loadingOperations)
+        public async UniTask LoadAndDestroy(params ILoadingOperation[] loadingOperations)
         {
             var loadingScreen = await Load();
             await loadingScreen.Load(loadingOperations);
