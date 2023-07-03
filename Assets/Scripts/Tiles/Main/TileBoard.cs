@@ -17,29 +17,46 @@ namespace Game.Tiles
         [Inject]
         private IFactory<TileTypes, Tile> tileFactory;
 
+        [Inject]
+        private TilesData tilesData;
+
 
         private Dictionary<Vector2, Stack<Tile>> tiles = new Dictionary<Vector2, Stack<Tile>>();
 
 
-        public IEnumerable<Tile> AllTiles
-        {
-            get => tiles.SelectMany(x => x.Value.Select(x => x));
-        }
+        public event System.Action OnEmpty;
 
 
         public void Remove(Tile tile)
         {
-            if(tiles.ContainsKey(tile.Position))
+            Vector2 position = tile.Position;
+
+            if (!tiles.ContainsKey(position))
             {
-                tiles[tile.Position].Pop();
-                if(tiles[tile.Position].Count == 0)
-                {
-                    tiles.Remove(tile.Position);
-                }
+                return;
+            }
+
+            tiles[position].Pop();
+            if (tiles[position].Count == 0)
+            {
+                tiles.Remove(position);
             }
             else
             {
-                throw new System.Exception($"No tile at {tile.Position}");
+                tiles[position].Peek().Hidden = false;
+            }
+
+
+            List<Tile> affecteds = Neighbours(position);
+            foreach (Tile affected in affecteds)
+            {
+                List<Tile> neighbours = Neighbours(affected.Position);
+                affected.Hidden = neighbours.Count(x => x.Layer > affected.Layer) > 0;
+            }
+
+            if(tiles.Count == 0)
+            {
+                OnEmpty?.Invoke();
             }
         }
 
@@ -79,5 +96,34 @@ namespace Game.Tiles
                 DestroyImmediate(container.GetChild(0).gameObject);
             }
         }
+
+
+        private List<Tile> Neighbours(Vector2 position)
+        {
+            List<Tile> neighbours = new List<Tile>();
+
+            List<Vector2> offsets = new List<Vector2>()
+            {
+                new Vector2(0, tilesData.SizeY / 2),
+                new Vector2(tilesData.SizeX / 2, tilesData.SizeY / 2),
+                new Vector2(tilesData.SizeX / 2, 0),
+                new Vector2(tilesData.SizeX / 2, -tilesData.SizeY / 2),
+                new Vector2(0, -tilesData.SizeY / 2),
+                new Vector2(-tilesData.SizeX / 2, -tilesData.SizeY / 2),
+                new Vector2(-tilesData.SizeX / 2, 0),
+                new Vector2(-tilesData.SizeX / 2, tilesData.SizeY / 2),
+            };
+
+            foreach (Vector2 offset in offsets)
+            {
+                if (tiles.ContainsKey(position + offset))
+                {
+                    neighbours.AddRange(tiles[position + offset]);
+                }
+            }
+
+            return neighbours;
+        }
+
     }
 }

@@ -17,3 +17,15 @@ MonoBehaviour:
     Index: 0
     LevelData: {fileID: 11400000, guid: 418e5900cbf17124ea9e690f06076096, type: 2}
     BackgroundSceneId: JungleScene
+  - Name: Level 1
+    Index: 1
+    LevelData: {fileID: 11400000, guid: 561064eaa160d1f458db3eb9550c658d, type: 2}
+    BackgroundSceneId: DesertScene
+  - Name: Level 2
+    Index: 2
+    LevelData: {fileID: 11400000, guid: e792497f64dc4c841bc2f0e64b138ea4, type: 2}
+    BackgroundSceneId: ForestScene
+  - Name: Level 2
+    Index: 3
+    LevelData: {fileID: 11400000, guid: c9de1e07b2e228d4db78284f5e1b2f17, type: 2}
+    BackgroundSceneId: JungleScene

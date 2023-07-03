@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: JungleScene
+  m_Name: Enviroment
   m_EditorClassIdentifier: 
-  m_GroupName: JungleScene
+  m_GroupName: Enviroment
   m_Data:
     m_SerializedData: []
   m_GUID: 4c30615f66f48104a81297e2244c84b3
@@ -21,8 +21,12 @@ MonoBehaviour:
     m_Address: JungleScene
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: e3f21bdf2c84dc649bcfcdc82d898974
-    m_Address: JungleAsset
+  - m_GUID: 8fb833954f68e2640842680d0cc08b4d
+    m_Address: ForestScene
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1ca1e548c6c0a7940acee6009006bc9b
+    m_Address: DesertScene
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

@@ -7,6 +7,7 @@ using Zenject;
 using Game.UI;
 using Game.Services;
 using System;
+using Game.Controllers;
 
 namespace Game.Context
 {
@@ -21,7 +22,7 @@ namespace Game.Context
         private LevelsData levelsData;
 
         [Inject]
-        private TileBoard tileBoard;
+        private TileGameController gameController;
 
         [Inject]
         private LoadingScreenProvider screenProvider;
@@ -32,6 +33,9 @@ namespace Game.Context
 
         public void Start()
         {
+            gameController.OnFail += ReloadLevel;
+            gameController.OnWin += NextLevel;
+
             LoadLevel(levelIndex);
         }
 
@@ -47,7 +51,7 @@ namespace Game.Context
                 await screen.Unload(levelLoader);
             }
 
-            levelLoader = new LevelLoader(tileBoard, level);
+            levelLoader = new LevelLoader(gameController, level);
 
             await screen.Load(levelLoader);
 
@@ -55,9 +59,17 @@ namespace Game.Context
             screenProvider.Unload();
         }
 
-        private void NextScene()
+        private async void NextLevel()
         {
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+
             levelIndex++;
+
+            LoadLevel(levelIndex);
+        }
+        private async void ReloadLevel()
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
 
             LoadLevel(levelIndex);
         }
@@ -67,7 +79,7 @@ namespace Game.Context
         {
             if(Input.GetKeyDown(KeyCode.Space))
             {
-                NextScene();
+                NextLevel();
             }
         }
     }

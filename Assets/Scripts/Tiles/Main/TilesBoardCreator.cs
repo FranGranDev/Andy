@@ -83,6 +83,10 @@ namespace Game.Tiles
             {
                 tiles.Remove(position);
             }
+            else
+            {
+                tiles[position].Peek().Hidden = false;
+            }
 
             List<Tile> affecteds = Neighbours(position);
             foreach(Tile affected in affecteds)

@@ -7,22 +7,23 @@ using UniRx;
 using System;
 using Game.Tiles;
 using Cysharp.Threading.Tasks;
+using Game.Controllers;
 
 namespace Game.Context
 {
     public class LevelLoader : ILoadingOperation, IUnloadingOperation
     {
-        public LevelLoader(TileBoard board, LevelsData.Level level)
+        public LevelLoader(TileGameController gameController, LevelsData.Level level)
         {
             this.level = level;
-            this.board = board;
+            this.gameController = gameController;
 
             progress = new Subject<float>();
         }
 
         private Subject<float> progress;
         private LevelsData.Level level;
-        private TileBoard board;
+        private TileGameController gameController;
 
         private SceneLoader sceneLoader;
 
@@ -37,13 +38,13 @@ namespace Game.Context
 
             await sceneLoader.Load();
 
-            board.Create(level.LevelData);
+            gameController.Create(level.LevelData);
         }
         public async UniTask Unload()
         {
             await sceneLoader.Unload();
 
-            board.Clear();
+            gameController.Clear();
         }
     }
 }
